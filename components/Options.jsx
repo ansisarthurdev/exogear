@@ -9,39 +9,39 @@ import { SecurePayment } from '@styled-icons/remix-fill/SecurePayment'
 
 const Options = () => {
 
+    const options = [{
+        heading: 'Free shipping',
+        info: 'Free shipping on orders over €100',
+        Icon: CarOutline
+    }, {
+        heading: 'Money Back Guarantee',
+        info: '30 days 100% money back guarantee',
+        Icon: MoneyHand
+    }, {
+        heading: 'Online support 24/7',
+        info: 'We will answer your questions',
+        Icon: Support
+    }, {
+        heading: 'Secure payment',
+        info: 'Powered by Stripe',
+        Icon: SecurePayment
+    }]
+
 return(
     <Wrapper>
-        <div className='option'>
-            <CarOutline className='icon' />
-            <div className='option-info'>
-                <h2>Free shipping</h2>
-                <p>Free shipping on orders over €100</p>
-            </div>
-        </div>
+        {options?.map(option => {
+            const { heading, info, Icon } = option;
 
-        <div className='option'>
-            <MoneyHand className='icon' />
-            <div className='option-info'>
-                <h2>Money Back Guarantee</h2>
-                <p>30 days 100% money back guarantee</p>
-            </div>
-        </div>
-
-        <div className='option'>
-            <Support className='icon' />
-            <div className='option-info'>
-                <h2>Online support 24/7</h2>
-                <p>We will answer your questions</p>
-            </div>
-        </div>
-
-        <div className='option'>
-            <SecurePayment className='icon' />
-            <div className='option-info'>
-                <h2>Secure payment</h2>
-                <p>Stripe payments </p>
-            </div>
-        </div>
+            return (
+                <div className="option" key={heading}>
+                    <Icon className='icon' />
+                    <div className="option-info">
+                        <h2>{heading}</h2>
+                        <p>{info}</p>
+                    </div>
+                </div>
+            )
+        })}
     </Wrapper>
 )
 }
@@ -50,19 +50,18 @@ const Wrapper = styled.div`
 display: flex;
 gap: 10px;
 flex-wrap: wrap;
-justify-content: center;
 align-items: center;
+justify-content: center;
 padding: 10px;
-background: #000000e3;
+background: var(--green);
 color: white;
 position: relative;
 bottom: 8px;
 
 .option {
 display: flex;
-flex: 1 0 0;
-min-width: 300px;
-justify-content: center;
+min-width: 260px;
+justify-content: flex-start;
 align-items: center;
 user-select: none;
 

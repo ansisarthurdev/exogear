@@ -53,7 +53,7 @@ const ProductItem = ({products, product}) => {
                         <p>{description}</p>
                     </div>
 
-                    <h2 className='price'>€{price}</h2>
+                    <h2 className='price' style={{color: 'var(--green)'}}>€{price}</h2>
                     <p className='shipping'><span style={{textDecoration: 'underline'}}>Shipping</span> is calculated at checkout.</p>
 
                     <div className='quantity'>
@@ -155,11 +155,31 @@ const Suggestions = styled.div`
 const Wrapper = styled.div`
 max-width: 1000px;
 margin: 40px auto 0;
-padding: 0 20px;
+padding: 70px 20px 0;
 
 .product-container {
     display: flex;
     gap: 40px;
+    
+    @media(max-width: 760px){
+        flex-direction: column;
+
+        .product-preview {
+            width: 100%;
+
+            .product-image {
+                max-width: 100%;
+            }
+
+            .product-images {
+                flex-wrap: wrap;
+            }
+        }
+
+        .product-description {
+            width: 100%;
+        }
+    }
 }
 
 .product-preview {
@@ -186,7 +206,7 @@ padding: 0 20px;
         }
 
         .selected {
-            border-color: black;
+            border-color: #d9d9d973;
         }
     }
 }
@@ -203,6 +223,7 @@ padding: 0 20px;
         gap: 5px;
         align-items: center;
         margin: 10px 0;
+        color: var(--green);
 
         .icon {
             width: 18px;
@@ -243,7 +264,7 @@ padding: 0 20px;
 
         .quantity-box {
             padding: 5px;
-            border: 1px solid black;
+            background: #d9d9d973;
             transition: .3s ease-out;
             cursor: pointer;
 

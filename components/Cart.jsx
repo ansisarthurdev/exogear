@@ -14,7 +14,7 @@ import { Minus } from '@styled-icons/boxicons-regular/Minus'
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove, showCart } = useStateContext();
 
   return (
     <Wrapper ref={cartRef}>
@@ -116,7 +116,7 @@ padding: 10px 20px 20px;
   font-size: .7rem;
   border-radius: 20px;
   border: none;
-  background-color:  #f85050;
+  background-color:  #03A9F4;
   color: white;
   font-weight: bold;
   transition: .3s ease-out;
@@ -168,12 +168,12 @@ margin-bottom: 10px;
 
         .quantity-box {
             padding: 3px;
-            border: 1px solid black;
             transition: .3s ease-out;
             cursor: pointer;
             font-size: .9rem;
             display: flex;
             align-items: center;
+            background: #d9d9d973;
 
             .icon {
                 width: 18px;
@@ -223,6 +223,7 @@ top: 0;
 background: #00000048;
 z-index: 100;
 
+
 .cart-container {
   position: absolute;
   right: 0;
@@ -232,6 +233,10 @@ z-index: 100;
   background: white;
   z-index: 110;
   padding-top: 10px;
+
+  @media(max-width: 430px){
+    width: 100%;
+  }
 
   .product-container {
     padding: 0 15px;

@@ -4,7 +4,11 @@ import Link from 'next/link'
 
 import { urlFor } from '../lib/client'
 
-const Product = ({product: {image, name, slug, price}}) => {
+//icons
+import { Star } from '@styled-icons/bootstrap/Star'
+import { StarFill } from '@styled-icons/bootstrap/StarFill'
+
+const Product = ({product: {image, name, slug, price, description}}) => {
   return (
     <Link href={`/product/${slug.current}`}>
     <Wrapper>
@@ -12,23 +16,99 @@ const Product = ({product: {image, name, slug, price}}) => {
         <img src={urlFor(image && image[0])} alt='' />
       </div>
       
-      <h3 className='product-name'>{name}</h3>
-      <p className='product-price'>€{price}</p>
+      <div className='product-info'>
+        <h3 className='product-name'>{name}</h3>
+        <p className='product-price'><span>€</span>{price}</p>
+      </div>
+
+      <div className="product-single-description">{description}</div>
+
+      <div className='rating'>
+        <StarFill className='icon' />
+        <StarFill className='icon' />
+        <StarFill className='icon' />
+        <StarFill className='icon' />
+        <Star className='icon' />
+        <p className='rating-count'>(20)</p>
+      </div>
     </Wrapper>
     </Link>
   )
 }
 
 const Wrapper = styled.div`
-max-width: 220px;
 cursor: pointer;
+display: flex;
+flex: 1;
+min-width: 250px;
+max-width: 300px;
+flex-direction: column;
+margin-bottom: 10px;
 
-h3 {
-  font-size: 1rem;
+@media(max-width: 550px){
+  max-width: 200px;
+  min-width: 200px;
+  width: 200px;
 }
 
-p {
-  font-size: .9rem;
+.rating {
+  display: flex;
+  align-items: center;
+
+  .rating-count {
+    margin-left: 5px;
+    font-size: .6rem;
+  }
+
+  .icon {
+    width: 12px;
+  }
+
+  .icon, .rating-count {
+    color: var(--green);
+  }
+}
+
+.product-info {
+  display: flex;
+  justify-content: space-between;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    width: 70%;
+    white-space: pre-wrap;
+    @media(max-width: 550px){
+      font-size: .8rem;
+    }
+  }
+
+  p {
+    font-size: .9rem;
+    font-weight: 600;
+    @media(max-width: 550px){
+      font-size: .7rem;
+    }
+  }
+
+  span {
+    font-size: .8rem;
+    position: relative;
+    bottom: 3px;
+
+    @media(max-width: 550px){
+      font-size: .6rem;
+    }
+  }
+}
+
+.product-single-description {
+  opacity: .7;
+  font-size: .7rem;
+  margin: 10px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 :hover {
@@ -41,10 +121,14 @@ p {
 
 .image-container {
   width: 100%;
-  height: 220px;
+  height: 200px;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
+
+  @media(max-width: 550px){
+    height: 150px;
+  }
 
 img {
   width: 100%;
