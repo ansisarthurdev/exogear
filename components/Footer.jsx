@@ -18,9 +18,9 @@ const Footer = () => {
 
         <h4>Accepted payments</h4>
         <PaymentsContainer>
-          <img src='../images/stripe.png' alt='' />
-          <img src='../images/visa.png' alt='' />
-          <img src='../images/mastercard.png' alt='' />
+          <img src='../images/stripe.png' />
+          <img src='../images/visa.png' />
+          <img src='../images/mastercard.png' />
         </PaymentsContainer>
 
         <h4 style={{marginTop: 20}}>Find us on socials</h4>
