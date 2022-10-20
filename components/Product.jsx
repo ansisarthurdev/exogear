@@ -45,10 +45,16 @@ max-width: 300px;
 flex-direction: column;
 margin-bottom: 10px;
 
-@media(max-width: 550px){
+@media(max-width: 590px){
   max-width: 200px;
   min-width: 200px;
   width: 200px;
+}
+
+@media(max-width: 480px){
+  max-width: 150px;
+  min-width: 150px;
+  width: 150px;
 }
 
 .rating {
