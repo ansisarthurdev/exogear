@@ -6,6 +6,7 @@ import { Product, FooterBanner, HeroBanner, Options } from '../components';
 import { client } from '../lib/client';
 
 const index = ({bannerData, productsData}) => {
+
   return (
     <Wrapper>
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
@@ -16,7 +17,7 @@ const index = ({bannerData, productsData}) => {
         </Category>
 
         <ProductsContainer>
-          {productsData?.slice(0,4).map((product) => <Product key={product._id} product={product} />)}
+          {productsData?.slice(-4).map((product) => <Product key={product._id} product={product} />)}
         </ProductsContainer>
 
         <Options />
