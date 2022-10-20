@@ -18,7 +18,12 @@ const ProductItem = ({products, product}) => {
 
     const { image, name, description, price} = product;
     const [index, setIndex] = useState(0);
-    const { incQty, decQty, qty, onAdd } = useStateContext(); 
+    const { incQty, decQty, qty, onAdd, setShowCart } = useStateContext(); 
+
+    const handleBuyNow = () => {
+        onAdd(product, qty);
+        setShowCart(true);
+    }
 
     return(
         <Wrapper>
@@ -74,7 +79,7 @@ const ProductItem = ({products, product}) => {
 
                     <div className='buttons'>
                         <button className='add-to-cart button' onClick={() => onAdd(product, qty)}>Add to Cart</button>
-                        <button className='buy-now button'>Buy Now</button>
+                        <button className='buy-now button' onClick={() => handleBuyNow()}>Buy Now</button>
                     </div>
                 </div>
             </div>
@@ -119,7 +124,7 @@ export const getStaticPaths = async () => {
   
   export const getStaticProps = async ({ params: { slug }}) => {
     const query = `*[_type == "product" && slug.current == '${slug}'][0]`;
-    const productsQuery = '*[_type == "product"]'
+    const productsQuery = '*[_type == "product"]';
     
     const product = await client.fetch(query);
     const products = await client.fetch(productsQuery);

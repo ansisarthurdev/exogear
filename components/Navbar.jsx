@@ -71,6 +71,7 @@ const Navbar = () => {
 const MenuMobileContainer = styled.div`
 position: fixed;
 top: 67px;
+padding-top: 20px;
 left: 0;
 background: white;
 width: 100%;

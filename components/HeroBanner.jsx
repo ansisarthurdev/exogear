@@ -21,7 +21,7 @@ const HeroBanner = ({heroBanner}) => {
 
 const BannerText = styled.div`
 position: absolute;
-top: 50%;
+top: 55%;
 transform: translateY(-50%);
 left: 5%;
 width: 60%;

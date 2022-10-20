@@ -11,19 +11,19 @@ const index = ({bannerData, productsData}) => {
       <HeroBanner heroBanner={bannerData.length && bannerData[0]} />
 
         <Category>
-          <h3>Best Seller Products</h3>
-          <p>Check out our best selling products</p> 
+          <h3>Browse newest listings</h3>
+          <p>Check out our newly added products</p> 
         </Category>
 
         <ProductsContainer>
-          {productsData?.map((product) => <Product key={product._id} product={product} />)}
+          {productsData?.slice(0,4).map((product) => <Product key={product._id} product={product} />)}
         </ProductsContainer>
 
         <Options />
 
         <Category>
-          <h3>Browse newest listings</h3>
-          <p>Check out our newly added products</p> 
+          <h3>Best Seller Products</h3>
+          <p>Check out our best selling products</p> 
         </Category>
 
         <ProductsContainer>

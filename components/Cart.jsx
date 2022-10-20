@@ -5,6 +5,7 @@ import toast from 'react-hot-toast'
 
 import { useStateContext } from '../context/StateContext'
 import { urlFor } from '../lib/client'
+import getStripe from '../lib/getStripe'
 
 //icons
 import { KeyboardArrowLeft as ArrowLeft } from '@styled-icons/material/KeyboardArrowLeft'
@@ -14,7 +15,27 @@ import { Minus } from '@styled-icons/boxicons-regular/Minus'
 
 const Cart = () => {
   const cartRef = useRef();
-  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove, showCart } = useStateContext();
+  const { totalPrice, totalQuantities, cartItems, setShowCart, toggleCartItemQuantity, onRemove } = useStateContext();
+
+  const handleCheckout = async () => {
+    const stripe = await getStripe();
+  
+    const response = await fetch('/api/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type':'application/json',
+      },
+      body: JSON.stringify(cartItems),
+    });
+  
+    if(response.statusCode === 500) return;
+  
+    const data = await response.json();
+  
+    toast.loading('Redirecting...');
+  
+    stripe.redirectToCheckout( {sessionId: data.id } )
+  }
 
   return (
     <Wrapper ref={cartRef}>
@@ -79,7 +100,7 @@ const Cart = () => {
               <button
                 type='button'
                 className='stripe-btn'
-                onClick=''
+                onClick={handleCheckout}
               >Pay With Stripe</button>
             </SubTotal>
         )}
@@ -124,6 +145,8 @@ padding: 10px 20px 20px;
 
   :hover {
     opacity: .8;
+    transform: scale(1.1);
+    left: 10%;
   }
 }
 `
@@ -262,7 +285,7 @@ z-index: 100;
     }
 
     .cart-quantity {
-      color: #f85050;
+      color: var(--green);
     }
   }
 }
